@@ -1,17 +1,34 @@
 package com.sample.studentauth.config;
 
 import com.mongodb.*;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.mongodb.config.AbstractMongoClientConfiguration;
 
-import java.net.UnknownHostException;
+import java.util.Collection;
+import java.util.Collections;
 
 @Configuration
-public class MongoDBConfig {
+public class MongoDBConfig extends AbstractMongoClientConfiguration {
 
-    public DBCollection getCollection() throws UnknownHostException {
+    @Override
+    protected String getDatabaseName() {
+        return "StudentData";
+    }
 
-        MongoClient mongoClient = new MongoClient("localhost", 27017);
-        DB database = mongoClient.getDB("student");
-        return database.getCollection("studentData");
+    @Override
+    public MongoClient mongoClient() {
+        ConnectionString connectionString = new ConnectionString("mongodb://localhost:27017/StudentData");
+        MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
+                .applyConnectionString(connectionString)
+                .build();
+
+        return MongoClients.create(mongoClientSettings);
+    }
+
+    @Override
+    public Collection getMappingBasePackages() {
+        return Collections.singleton("com.sample");
     }
 }

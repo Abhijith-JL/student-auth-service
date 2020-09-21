@@ -1,42 +1,38 @@
 package com.sample.studentauth.service;
 
-import com.mongodb.*;
-import com.sample.studentauth.adapter.rest.model.request.UserRequest;
-import com.sample.studentauth.config.MongoDBConfig;
+import com.sample.studentauth.adapter.rest.model.request.StudentData;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
-import java.net.UnknownHostException;
 import java.util.List;
 
 @Service
 public class StudentAuthService {
 
     @Autowired
-    MongoDBConfig mongoDBConfig;
+    MongoTemplate mongoTemplate;
 
-    public List findUser(UserRequest user) throws UnknownHostException {
+    public List findUser(StudentData user) throws Exception {
 
-        BasicDBObject query = new BasicDBObject();
-        query.put("emailId", user.getEmailId());
-        query.put("password", user.getPassword());
-
-        return mongoDBConfig.getCollection().find(query).toArray();
+        Query query = new Query();
+        query.addCriteria(Criteria.where("emailId").is(user.getEmailId()))
+                .addCriteria(Criteria.where("password").is(user.getPassword()));
+        try {
+            return mongoTemplate.find(query, StudentData.class);
+        } catch (Exception e) {
+            throw new Exception("Cannot find the user");
+        }
     }
 
-    public boolean saveUser(UserRequest user) throws Exception {
+    public StudentData saveUser(StudentData user) throws Exception {
 
-        BasicDBObject doc = new BasicDBObject();
-        doc.put("name", user.getName());
-        doc.put("emailId", user.getEmailId());
-        doc.put("address", user.getAddress());
-        doc.put("password", user.getPassword());
-        doc.put("mobile", user.getMobile());
         try {
-            mongoDBConfig.getCollection().insert(doc);
-            return true;
+            return mongoTemplate.save(user);
         } catch (Exception e) {
-            throw new Exception("Failed to insert");
+            throw new Exception("Insertion failed");
         }
     }
 }
