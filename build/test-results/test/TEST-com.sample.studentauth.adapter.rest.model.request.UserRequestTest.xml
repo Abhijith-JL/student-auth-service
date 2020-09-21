@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.sample.studentauth.adapter.rest.model.request.UserRequestTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2020-09-19T17:43:29" hostname="DESKTOP-F3O48IO" time="0.001">
+  <properties/>
+  <testcase name="getPasswordTest" classname="com.sample.studentauth.adapter.rest.model.request.UserRequestTest" time="0.0"/>
+  <testcase name="getAddressTest" classname="com.sample.studentauth.adapter.rest.model.request.UserRequestTest" time="0.0"/>
+  <testcase name="constructorTest" classname="com.sample.studentauth.adapter.rest.model.request.UserRequestTest" time="0.0"/>
+  <testcase name="setMobileTest" classname="com.sample.studentauth.adapter.rest.model.request.UserRequestTest" time="0.0"/>
+  <testcase name="setPasswordTest" classname="com.sample.studentauth.adapter.rest.model.request.UserRequestTest" time="0.0"/>
+  <testcase name="setEmailIdTest" classname="com.sample.studentauth.adapter.rest.model.request.UserRequestTest" time="0.0"/>
+  <testcase name="setNameTest" classname="com.sample.studentauth.adapter.rest.model.request.UserRequestTest" time="0.0"/>
+  <testcase name="getNameTest" classname="com.sample.studentauth.adapter.rest.model.request.UserRequestTest" time="0.0"/>
+  <testcase name="setAddressTest" classname="com.sample.studentauth.adapter.rest.model.request.UserRequestTest" time="0.0"/>
+  <testcase name="getEmailIdTest" classname="com.sample.studentauth.adapter.rest.model.request.UserRequestTest" time="0.0"/>
+  <testcase name="getMobileTest" classname="com.sample.studentauth.adapter.rest.model.request.UserRequestTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
